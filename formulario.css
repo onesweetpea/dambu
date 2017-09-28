@@ -1,0 +1,63 @@
+label, input, textarea{
+    font-family: 'Imprima', sans-serif;
+}
+.form{
+    margin-top: 600px;
+}
+.div{
+    margin: 15px 5px 15px 0px;
+    background-color: 
+        #E6E6E6;
+    height: auto;
+}
+.button{
+    font-family: 'Imprima', sans-serif;
+    margin-top: 15px;
+}
+body{
+    background-color: white!important;
+}
+#title{
+     padding: 50px  30%;
+}
+#title > label,
+#title > input{
+    font-size: 30px;
+    margin: 0px 5px;
+}
+#recipe{
+    padding: 50px  10%;
+}
+#recipe > label,
+#recipe > textarea{
+    font-size: 24px;
+}
+#recipe > textarea{
+    width: 900px;
+    height: 350px;
+}
+#img{
+    height: 200px;
+    padding: 30px 10%;
+    font-size: 18px;
+}
+#date{
+    height: 200px;
+    font-size: 18px;
+    padding: 30px 10%;
+}  
+.enviar{
+    padding: 30px;
+}
+.enviar > input{
+    margin-left: 10%;
+     font-family: 'Imprima', sans-serif;
+     font-size: 24px;
+}
+input, textarea{
+    border: none;
+    background: none;
+}
+form > div{
+    
+}

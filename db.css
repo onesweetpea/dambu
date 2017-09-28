@@ -1,0 +1,256 @@
+.limpiar{
+    margin: 0px !important;
+    padding: 0px !important;
+}
+.arriba{
+    top: 0px !important;
+    margin: 0px !important;
+    padding: 0px !important:
+}
+.centro{
+    float:none !important;
+    margin: 0 auto;
+}
+.menu{
+    background-color: none !important;
+}
+.menu > div > ul > li> a,
+.menu > div >button,
+.menu > div > a,
+.menu > div > ul > li > button,
+.menu > div > ul > li > ul > li > a{
+    background-color: #5A5050;
+    color: white !important;
+    font-size: 18px !important;
+    font-family: 'Imprima', sans-serif;
+    text-transform: uppercase;
+}
+.absolute{
+    position: absolute !important;
+}
+.logo{
+    width:150px;
+} 
+.menu > div > a:hover,
+.menu > div > ul > li > a:hover,
+.menu > div >button > a:hover,
+.menu > div > ul > li > button:hover,
+.menu > div > ul > li > ul > li > a:hover{
+    background-color: #3EACA5 !important;
+    color: white !important;
+    font-family: 'Imprima', sans-serif;
+    text-transform: uppercase;
+     transition-duration: 1s;
+}
+.float{
+    float: left !important;
+}
+.inline{
+    display: inline-block !important;
+}
+.img-nuevo{
+    width: 400px;
+    height: 300px;
+}
+.h4-gallery{
+    font-size: 20px;
+    background-color: #95B22A;
+    color: white;
+    padding: 20px;
+    margin: 0 auto 30px;
+    font-family: 'Imprima', sans-serif;
+}
+a{
+    text-decoration:none;
+    color: #E3E9B6;
+}
+.subtitulos{
+    font-family: 'Imprima', sans-serif;
+    font-size: 40px;
+    margin: 0px 0px 40px 0px;
+}
+.subtitulos-in-pro{
+    font-family: 'Imprima', sans-serif;
+    font-size: 30px;
+    margin: 20px 20px 40px;
+    color: white;
+}
+.img-carrusel{
+    max-height: 550px;
+}
+#footer{
+    width: 100% !important;
+	height: auto !important;
+	background: #5A5050 !important;
+	bottom: 0px;
+    top:0px;
+    z-index: 12;
+}
+.fijo{
+    position:fixed;  
+    bottom: 10px;
+    right: 20px;
+    z-index:10;
+}
+.fijo2:{
+     position:fixed;  
+    top: 0px;
+    z-index:10;
+}
+.icon{
+    color: #3EACA5;
+}
+.icon-brand{
+    color: white;
+}
+.img-margin-inicio{
+    margin-top: 40%
+}
+.pull-left {
+  float: left !important;
+}
+.pull-right {
+  float: right !important;
+}
+.div-ingrediente{
+    background-color: #3EACA5;
+}
+.div-procedimiento{
+    background-color: #5A5050;
+}
+.div-termino{
+    background-color: #95B22A;
+    margin: 90px 30px;
+}
+ul > li{
+    list-style: none;
+}
+form > ul > lh{
+    color: white;
+    font-size: 22px;
+    font-family: 'Imprima', sans-serif;
+}
+form > ul > li{
+    color: white;
+    font-size: 18px;
+    font-family: 'Imprima', sans-serif;
+    margin-left: 20px;
+}
+.video-carrusel{
+    max-width: 900px;
+}
+p{
+    text-align: justify;
+}
+button{
+    border: none;
+    height: 50px;
+}
+#imaginary_container{
+    margin-top:20%; 
+}
+.stylish-input-group .input-group-addon{
+    background: white !important; 
+}
+.stylish-input-group .form-control{
+	border-right:0; 
+	box-shadow:0 0 0; 
+	border-color:#ccc;
+}
+.stylish-input-group button{
+    border:0;
+    background:transparent;
+}
+.textarea > h5,
+.textarea > form > h5{
+    color: white;
+     font-family: 'Imprima', sans-serif;
+    font-size: 30x;
+}
+.textarea> textarea,
+.textarea > form > input{
+    color: black;
+     font-family: 'Imprima', sans-serif;
+    font-size: 28x;
+}
+.textarea{
+padding: 30px 0px;
+}
+body{
+    background-image: url(images/small.png);
+    background-size:cover;
+    background-repeat: no-repeat;
+    background-position: top center;
+    background-attachment: fixed;
+}
+.color > a > i{
+    padding: 0px 30px 0px 5px;
+}
+.color >  a:hover > i{
+    color: #95B22A;
+    transition-duration: 1s;
+}
+.opacity > div > a:hover > img{
+    filter: url('#grayscale'); /* Versión SVG para IE10, Chrome 17, FF3.5, Safari 5.2 and Opera 11.6 */
+-webkit-filter: grayscale(50%);
+-moz-filter: grayscale(50%);
+-ms-filter: grayscale(50%);
+-o-filter: grayscale(50%);
+filter: grayscale(50%); /* Para cuando es estándar funcione en todos */
+filter: Gray(); /* IE4-8 and 9 */
+
+-webkit-transition: all 1s ease;
+-moz-transition: all 1s ease;
+-ms-transition: all 1s ease;
+-o-transition: all 1s ease;
+transition: all 1s ease;
+}
+.opacity > div > a:hover > h4{
+    background-color: #3EACA5;
+    transition-duration: 1s;
+}
+.opacity > div > a:hover > h4 > span{
+    padding-left: 20px;
+    transition-duration: 1s;
+}
+.opacity > div > a:hover{
+    text-decoration: none !important;
+}
+.search{
+    margin-top: 15px;
+    clear: right;
+}
+.active1{
+    opacity: 0.7;
+}
+.menu > a:hover{
+    opacity: 0.5;
+    transition-duration: 0.5s;
+}
+.container > input,
+.container > textarea{
+    background-color: #5A5050 !important;
+    border: 3px solid white;
+    padding: 4px;
+    margin: 3px 0px 3px 3px;
+    color: white;
+    width: auto;
+}
+@media (max-width: 400px) {
+    .logo{
+        width: 100px;
+    }
+    .color > a > i{
+    padding: 0px 15px 0px 5px;
+}
+    .search > input{
+        min-width: 200px !important;
+    }
+}
+.search > input{
+        min-width: 450px;
+    }
+@media (max-width: 500px) {
+    .search > input{
+        min-width: 350px !important;
+    }
