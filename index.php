@@ -11,9 +11,9 @@
       <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css" rel="stylesheet" media="screen"> 
   </head>
   <body>
-       <div id="header" class="container"> 
+      <div id="header" class="container"> 
                   <nav class="navbar menu arriba" role="navigation">
-                      <a href="index.html"><img src="images/logo.png" class="logo img-responsive pull-left"></a>
+                      <a href="index.php"><img src="images/logo.png" class="logo img-responsive pull-left"></a>
                       <div class="navbar-header">
                           <button type="button" class="navbar-toggle arriba fijo2" data-toggle="collapse" data-target=".navbar-ex1-collapse">
                               <span class="sr-only">Desplegar navegación</span>
@@ -23,32 +23,34 @@
                           </button>
                           </div>
                           <div class="collapse navbar-collapse navbar-ex1-collapse">
-                              <ul class="nav navbar-nav pull-right">
-                                  <li><a class="active1 " href="index.html">Inicio</a></li>
-                                  <li><a href="tips.html">Tips</a></li>
-                                  <li><a href="tecnicas.html">Técnicas</a></li>
-                                  <li><a href="recetas.php">Recetas</a></li>
+                           <ul class="nav navbar-nav pull-right">
+                                  <li><a href="index.php">Inicio</a></li>
+                                  <?php 
+                                  include('conexion.php');
+                                  $lis = $conn->query("SELECT * FROM opcion ");
+                                  foreach ($lis as $r){
+                                  ?>
+                                  <li id="prueba" value="<?php echo $r['id'] ?>"><a href="recetas.php?id=<?php echo $r['id'] ?>" name="op" ><?php echo $r['nombre'];?></a></li>
                                    <li class="dropdown">
                                       <button class="dropdown-toggle" data-toggle="dropdown">
                                           <span class="caret"></span>
                                           </button>
                                       <ul class="dropdown-menu limpiar" role="menu">
-                                          <li><a href="#">Entremesés</a></li>
-                                          <li><a href="#">Sopas</a></li>
-                                          <li><a href="#">Pastas</a></li>
-                                          <li><a href="#">Ensaladas</a></li>
-                                          <li><a href="#">Carnes Rojas</a></li>
-                                          <li><a href="categorias.html">Carnes blancas</a></li>
-                                          <li><a href="#">Mariscos</a></li>
-                                          <li><a href="#">Guarniciones</a></li>
-                                          <li><a href="#">Postres</a></li>
+                                         <?php 
+                                      include('conexion.php');
+                                      $a = $r['id'];
+                                      $prueba = $conn->query("SELECT * FROM categoria WHERE opcion =  $a");
+                                      foreach ($prueba as $p){
+                                          ?>
+                                          <li><a href="recetario.php?id=<?php echo $p['id'] ?>"><?php echo $p['nombre']; ?></a></li>
+                                          <?php }?>
                                       </ul>
                                   </li>
-                                  <li><a href="noticias.html">Noticias</a></li>
+                                  <?php }?>
                               </ul>
                               <form>
                                   <div class="form-group pull-right search" role="search">
-                                      <input role="search" type="text" class="form-control " placeholder="Buscar">
+                                      <input role="search" type="text" class="form-control " placeholder="Buscar" style="width: 450px;">
                                   </div>
                               </form>
                               <form>
@@ -56,7 +58,7 @@
                                       <a title="Facebook" href="https://es-la.facebook.com/danny.boteo" target="_blank">
                                           <i class="fa fa-facebook-square icon-brand" style="font-size: 30px"></i>
                                       </a>
-                                      <a title="Instagram" href="https://www.instagram.com/chefboteo/" target="_blank">
+                                      <a title="Instagram" href="https://www.instagram.com/dambu_/" target="_blank">
                                           <i class="fa fa-instagram icon-brand" style="font-size: 30px"></i>
                                       </a>
                                       <a title="Pinterest" href="https://es.pinterest.com/Readerforever00/" target="_blank">
@@ -83,14 +85,14 @@
 include('conexion.php');
 
 //traer los datos de la base de datos
-$res = $conn->query("SELECT * FROM receta ORDER BY fecha DESC");
+$res = $conn->query("SELECT * FROM receta WHERE opcion = 1 ORDER BY fecha DESC");
 $a = 0;
 foreach ($res as $r){
 $a = $a + 1;
 ?>
               <div class="gallery_product col-md-4">
                   <a href="recetass.php?id=<?php echo $r['id'] ?>">
-                    <img src="images/da.jpg" class="img-responsive">
+                    <img src="<?php echo $r['imagen'];?>" class="img-responsive">
                 
                         <h4 class="h4-gallery"><?php echo $r['titulo']?><br><?php echo $r['fecha']; ?>
                             <span class="glyphicon glyphicon-chevron-right"></span>
@@ -115,15 +117,32 @@ $a = $a + 1;
                   <li data-target="#myCarousel" data-slide-to="2"></li>
               </ol>
               <div class="carousel-inner">
-                   <div class="item active">
-                       <img class="img-carrusel centro" src="images/noticia.jpg" alt="Feria Alimentaria">
+                  <?php 
+                  include('conexion.php');
+                  $res = $conn->query("SELECT * FROM receta WHERE opcion = 3 ORDER BY fecha DESC");
+                  $a = 0;
+                  foreach ($res as $r){
+                      $a = $a + 1;
+                     
+                      if ($a == 1){
+                  ?>
+                   <div class="active item">
+                       <img class="img-carrusel centro" src="<?php echo $r['imagen'];?>" alt="Feria Alimentaria">
                   </div>
+                  <?php
+                      }
+                      else{
+                          ?>
                   <div class="item">
-                      <img class="img-carrusel centro" src="images/feria.jpg" alt="Chicago">
+                       <img class="img-carrusel centro" src="<?php echo $r['imagen'];?>" alt="Feria Alimentaria">
                   </div>
-                  <div class="item">
-                      <img class="img-carrusel centro" src="images/l.jpeg" alt="New York">
-                  </div>
+                  <?php
+                      }
+                      if($a >= 3){
+                          break;
+                      }
+                  }
+                  ?>
               </div>
               <a class="left carousel-control" href="#myCarousel" data-slide="prev">
                   <span class="glyphicon glyphicon-menu-left"></span>
@@ -135,7 +154,7 @@ $a = $a + 1;
               </a>
 
       </div>
-      <a href="noticias.html"><h2 class="container">Ver Más<span class="glyphicon glyphicon-chevron-right"></span></h2></a>
+      <a href="recetas.php?id=3"><h2 class="container">Ver Más<span class="glyphicon glyphicon-chevron-right"></span></h2></a>
           <br>
           </div>
          <div id="footer" style="border-color: #5A5050;">

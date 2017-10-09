@@ -11,6 +11,7 @@
       <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css" rel="stylesheet" media="screen"> <!–Llamamos al archivo CSS a través de CDN –>
   </head>
     <body>
+        
        <div id="header" class="container"> 
                   <nav class="navbar menu arriba" role="navigation">
                       <a href="index.php"><img src="images/logo.png" class="logo img-responsive pull-left"></a>
@@ -23,28 +24,30 @@
                           </button>
                           </div>
                           <div class="collapse navbar-collapse navbar-ex1-collapse">
-                              <ul class="nav navbar-nav pull-right">
+                           <ul class="nav navbar-nav pull-right">
                                   <li><a href="index.php">Inicio</a></li>
-                                  <li><a href="tips.html">Tips</a></li>
-                                  <li><a href="tecnicas.html">Técnicas</a></li>
-                                  <li><a class="active1 " href="recetas.php">Recetas</a></li>
+                                  <?php 
+                                  include('conexion.php');
+                                  $lis = $conn->query("SELECT * FROM opcion ");
+                                  foreach ($lis as $r){
+                                  ?>
+                                  <li id="prueba" value="<?php echo $r['id'] ?>"><a href="recetas.php?id=<?php echo $r['id'] ?>" name="op" ><?php echo $r['nombre'];?></a></li>
                                    <li class="dropdown">
                                       <button class="dropdown-toggle" data-toggle="dropdown">
                                           <span class="caret"></span>
                                           </button>
                                       <ul class="dropdown-menu limpiar" role="menu">
-                                          <li><a href="#">Entremesés</a></li>
-                                          <li><a href="#">Sopas</a></li>
-                                          <li><a href="#">Pastas</a></li>
-                                          <li><a href="#">Ensaladas</a></li>
-                                          <li><a href="#">Carnes Rojas</a></li>
-                                          <li><a href="categorias.php">Carnes blancas</a></li>
-                                          <li><a href="#">Mariscos</a></li>
-                                          <li><a href="#">Guarniciones</a></li>
-                                          <li><a href="#">Postres</a></li>
+                                         <?php 
+                                      include('conexion.php');
+                                      $a = $r['id'];
+                                      $prueba = $conn->query("SELECT * FROM categoria WHERE opcion =  $a");
+                                      foreach ($prueba as $p){
+                                          ?>
+                                          <li><a href="recetario.php?id=<?php echo $p['id'] ?>"><?php echo $p['nombre']; ?></a></li>
+                                          <?php }?>
                                       </ul>
                                   </li>
-                                  <li><a href="noticias.html">Noticias</a></li>
+                                  <?php }?>
                               </ul>
                               <form>
                                   <div class="form-group pull-right search" role="search">
@@ -74,87 +77,33 @@
            </nav>
                    
               </div>
+    
            <div style="background-color: white;">
           <h2 class="container subtitulos img-margin-inicio">Categorías</h2>
           <div class="container opacity">
-              <div class="gallery_product col-md-4">
-                  <a href="categorias.php" name="entremes">
-                    <img src="images/entremes.jpg" class="img-responsive">
-                        <h4 class="h4-gallery">Entremés
+         
+               <?php 
+               include('conexion.php');
+        $url= $_SERVER["REQUEST_URI"];
+        for ($x = 1; $x <= 4; $x++){
+        if ($url ==  '/web/recetas.php?id='.$x){
+            $res = $conn->query("SELECT * FROM categoria WHERE opcion = $x");
+            foreach ($res as $r){
+               ?>
+                <div class="gallery_product col-md-4">
+                  <a href="recetario.php?id=<?php echo $r['id'] ?>">
+                    <img src="<?php echo $r['imagen'];?>" class="img-responsive">
+                
+                        <h4 class="h4-gallery"><?php echo $r['nombre']?>
                             <span class="glyphicon glyphicon-chevron-right"></span>
                         </h4>
                   </a>
               </div>
-              <div class="gallery_product col-md-4">
-                  <a href="categorias.php">
-                  <img src="images/soup.jpeg" class="img-responsive">
-                  <h4 class="h4-gallery"><?php $s = 'sopas';?>Sopas
-                         <span class="glyphicon glyphicon-chevron-right"></span>
-                  </h4>
-                      </a>
-              </div>
-              <div class="gallery_product col-md-4">
-                  <a href="categorias.php">
-                  <img src="images/pasta.jpg" class="img-responsive">
-                  <h4 class="h4-gallery"><?php $s = 'pastas';?>Pastas
-                         <span class="glyphicon glyphicon-chevron-right"></span>
-                  </h4>
-                      </a>
-              </div>
-          </div>
-        <div class="container opacity">
-            
-              <div class="gallery_product col-md-4">
-                  <a href="categorias.php">
-                  <img src="images/salad.png" class="img-responsive">
-                  <h4 class="h4-gallery"><?php $s = 'ensaladas';?>Ensaladas
-                         <span class="glyphicon glyphicon-chevron-right"></span>
-                  </h4>
-                  </a>
-              </div>
-              <div class="gallery_product col-md-4">
-                  <a href="categorias.php">
-                  <img src="images/chicken.png" class="img-responsive">
-                  <h4 class="h4-gallery"><?php $s = 'carnesblancas';?>Carnes blancas
-                         <span class="glyphicon glyphicon-chevron-right"></span>
-                  </h4>
-                  </a>
-              </div>
-              <div class="gallery_product col-md-4">
-                  <a href="categorias.php">
-                  <img src="images/meat.png" class="img-responsive">
-                  <h4 class="h4-gallery"><?php $s = 'carnesrojas';?>Carnes rojas
-                         <span class="glyphicon glyphicon-chevron-right"></span>
-                  </h4>
-                      </a>
-              </div>
-          </div>
-        <div class="container opacity">
-              <div class="gallery_product col-md-4">
-                  <a href="categorias.php">
-                  <img src="images/sea.png" class="img-responsive">
-                  <h4 class="h4-gallery"><?php $s = 'mariscos';?>Mariscos
-                         <span class="glyphicon glyphicon-chevron-right"></span>
-                  </h4>
-                      </a>
-              </div>
-              <div class="gallery_product col-md-4">
-                  <a href="categorias.php">
-                  <img src="images/guarniciones.png" class="img-responsive">
-                  <h4 class="h4-gallery"><?php $s = 'guarniciones';?>Guarniciones
-                         <span class="glyphicon glyphicon-chevron-right"></span>
-                  </h4>
-                      </a>
-              </div>
-              <div class="gallery_product col-md-4">
-                  <a href="categorias.php">
-                  <img src="images/dessert.png" class="img-responsive">
-                  <h4 class="h4-gallery"><?php $s = 'postres';?>Postres
-                         <span class="glyphicon glyphicon-chevron-right"></span>
-                  </h4>
-                      </a>
-              </div>
-          </div>
+              
+                <?php
+                    }}}
+              ?>
+               </div>
                </div>
          <div id="footer" class="container"><div class="col-md-9"></div>
               

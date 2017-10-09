@@ -1,18 +1,17 @@
 <!DOCTYPE html>
 <html lang="es">
-  <head>
+<head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1"> <!–Con esto garantizamos que se vea bien en dispositivos móviles–>
     <title>DB</title>
       <link href="db.css" rel="stylesheet" type="text/css">
-       <link href="formulario2.css" rel="stylesheet" type="text/css">
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
       <link href="https://fonts.googleapis.com/css?family=Encode+Sans+Expanded|Imprima" rel="stylesheet"> 
       <link href="images/logo.png" rel="shortcut icon" type="image/png">
       <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css" rel="stylesheet" media="screen"> <!–Llamamos al archivo CSS a través de CDN –>
   </head>
-  <body>
- <div id="header" class="container"> 
+    <body>
+    <div id="header" class="container"> 
                   <nav class="navbar menu arriba" role="navigation">
                       <a href="index.php"><img src="images/logo.png" class="logo img-responsive pull-left"></a>
                       <div class="navbar-header">
@@ -77,71 +76,36 @@
            </nav>
                    
               </div>
-      <div style="background-color: white;">
-<?php 
-
+           <div style="background-color: white;">
+          <h2 class="container subtitulos img-margin-inicio">Opciones</h2>
+          <div class="container opacity">
+              <?php 
+//conexion
 include('conexion.php');
-
 $id = $_GET['id'];
 
-$res = $conn->query("SELECT * FROM receta WHERE id = $id");
-
+$res = $conn->query("SELECT * FROM receta WHERE categoria = $id ORDER BY fecha DESC");
 foreach ($res as $r){
-    
-    ?>
-        
-      <h2 class="container subtitulos img-margin-inicio"><?php echo $r['titulo'];?></h2>
-      <div class="container"> 
-          <div class="col-md-12 div-procedimiento pull-left">
-               <h2 class="subtitulos-in-pro">Procedimiento</h2>
-              <p><?php echo $r['contenido']; ?></p>
-          </div>
-
-      </div>
-          <br>
-          <?php
+?>
+              <div class="gallery_product col-md-4">
+                  <a href="recetass.php?id=<?php echo $r['id'] ?>">
+                    <img src="<?php echo $r['imagen'];?>" class="img-responsive">
+                
+                        <h4 class="h4-gallery"><?php echo $r['titulo']?><br><?php echo $r['fecha']; ?>
+                            <span class="glyphicon glyphicon-chevron-right"></span>
+                        </h4>
+                  </a>
+              </div>
+                <?php
+                
     //cierre del foreach
                       
 }
              
 ?>
-          <div class="container">
-          <form class="col-md-6 pull-left" action="guardarc.php" method="post" enctype="multipart/form-data">
-            <div class="div" id="nombre" style="margin: 10px 0px 20px 0px;">
-                <input type="text" name="comentario" value="" style="width: 100%;" placeholder="Comentario">
-                <input type="hidden" name="receta" value="<?php echo($id); ?>">
-            </div>
-              <div class="div" class="col-md-12 " id="enviar" style="margin: 30px 0px 60px;">
-                <input type="submit" name="submit" value="Guardar Comentario">
-            </div>
-        </form>
-<div class="col-md-6 pull-right">
-                 <?php 
-//conexion
-include('conexion.php');
-$a = 0;
-$comentario = $conn->query("SELECT * FROM comentario WHERE receta = $id ORDER BY fecha DESC");
-foreach ($comentario as $r){
-$a = $a+1;
-?>
-          <div class="container centro" style="background-color: #daf1f0 !important; border-bottom-style: solid !important; border-width: 3px; margin-top: 4px; width: 100%; height: auto; border-color: #3EACA5;">
-              <small><?php echo $r['fecha']; ?></small>
-              <hr style="border-style: solid; border-width: 1px; border-color: #3EACA5;">
-              <p><?php echo $r['comentario'] ?></p>
-          </div><br>
-                    <?php
-    //cierre del foreach
-   if($a >= 3){
-       break;
-   }                   
-}
-    
-?>  
-           </div>
           </div>
-
-          </div>
-       <div id="footer" class="container"><div class="col-md-9"></div>
+               </div>
+         <div id="footer" class="container"><div class="col-md-9"></div>
               
             <form class="container" action="mailto:danny.boteo@gmail.com" method="post" enctype="text/plain"><br><br>
                 <input class="pull-right" type="text" name="name" placeholder="Nombre" style="width: auto;"><br><br>
@@ -152,12 +116,12 @@ $a = $a+1;
                 
             </form>
               </div>
-          <div class="fijo">
+         <div class="fijo">
             <a href="#header">    
                 <i class="fa fa-chevron-circle-up icon" style="font-size: 50px"></i>
             </a>
         </div>
-      <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script> <!– Importante llamar antes a jQuery para que funcione bootstrap.min.js   –> 
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script> <!– Importante llamar antes a jQuery para que funcione bootstrap.min.js   –> 
       <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script> <!– Llamamos al JavaScript  a través de CDN –>
-  </body>
+    </body>
 </html>  

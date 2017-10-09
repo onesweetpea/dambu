@@ -3,17 +3,19 @@
 include('conexion.php');
 $categoria = $_POST['categoria'];
 $titulo = $_POST['titulo'];
-$receta = $_POST['receta'];
-//$imagen = $_FILE['archivo'];
+$contenido = $_POST['contenido'];
+$imagen = $_POST['archivo'];
 $fecha = date('Y-m-d H:i:s');
 
-//var_dump($titulo);
-//var_dump(receta);
+$li = $conn->query("SELECT * FROM categoria WHERE id = '$categoria'");
+foreach ($li as $r){
+    $opcion = $r['opcion'];
+}
 
-$res = $conn->query("INSERT receta (titulo, receta, imagen, fecha, categoria) VALUES ('$titulo', '$receta', '$imagen', '$fecha', '$categoria')");
+$res = $conn->query("INSERT receta (titulo, contenido, imagen, fecha, opcion, categoria) VALUES ('$titulo', '$contenido', '$imagen', '$fecha', '$opcion', '$categoria')");
 
 //var_dump($res);
 
-header("location: formulario.html");
+header("location: formulario.php");
 
 ?>
